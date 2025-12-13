@@ -1,214 +1,226 @@
+const STORAGE_KEY = 'pryma.poll.responses';
+const POW_DIFFICULTY = '0000';
+
 const cards = [
   {
     id: 'card1',
-    title: 'The Root — Trust Primitive',
-    description: 'What should be the irreducible unit of trust in PRYMA?',
+    title: 'The Root — Where trust begins',
+    description: 'What should PRYMA trust first, before anything else?',
     questions: [
       {
         type: 'single',
         name: 'trustPrimitive',
-        prompt: 'What should be the irreducible unit of trust in PRYMA?',
+        prompt: 'What should PRYMA treat as its starting point for trust?',
         options: [
-          'A living human',
-          'A cryptographic capability',
-          'A sovereign device',
-          'A verifiable software agent',
-          'A constitutional rule',
-          'Unsure / depends'
+          'A real human',
+          'A secret key or cryptographic proof',
+          'A device you personally control',
+          'A verified software agent',
+          'A clear rule written into the system',
+          'Not sure / it depends'
         ]
       },
       {
         type: 'text',
         name: 'rootRationale',
-        prompt: 'Why did you choose this?',
+        prompt: 'Why did you pick that?',
         placeholder: 'Optional context'
       }
     ]
   },
+
   {
     id: 'card2',
-    title: 'The Flame — Power Accumulation',
-    description: 'Where should power be forbidden from accumulating?',
+    title: 'The Flame — Stopping power from piling up',
+    description: 'Where should PRYMA strictly prevent power from concentrating?',
     questions: [
       {
         type: 'multi',
         name: 'powerForbidden',
-        prompt: 'Where should power be forbidden from accumulating?',
+        prompt: 'Select all areas where no one should be able to hoard power:',
         options: [
           'Governance',
           'Validation',
-          'Routing / networking',
+          'Networking / routing',
           'Data visibility',
           'Economic control',
-          'Agent orchestration'
+          'Agent control'
         ]
       },
       {
         type: 'single',
         name: 'powerNeverCapturable',
-        prompt: 'If one thing must never be capturable, what is it?',
+        prompt: 'If only one area could never be captured, which would it be?',
         options: [
           'Governance',
           'Validation',
-          'Routing / networking',
+          'Networking / routing',
           'Data visibility',
           'Economic control',
-          'Agent orchestration'
+          'Agent control'
         ]
       }
     ]
   },
+
   {
     id: 'card3',
-    title: 'The Veil — Privacy Baseline',
-    description: 'What information is acceptable to leak if the system still succeeds?',
+    title: 'The Veil — Privacy basics',
+    description: 'What information could leak while PRYMA still succeeds?',
     questions: [
       {
         type: 'multi',
         name: 'acceptableLeakage',
-        prompt: 'What information is acceptable to leak?',
+        prompt: 'Which kinds of information would be acceptable to leak?',
         options: [
           'Traffic volume',
           'Timing metadata',
           'Public actions (votes, proposals)',
           'Device type',
-          'Nothing beyond what the user explicitly reveals'
+          'Nothing beyond what users choose to reveal'
         ]
       }
     ]
   },
+
   {
     id: 'card4',
-    title: 'The Blade — Security Philosophy',
-    description: 'Which approach should PRYMA prioritize?',
+    title: 'The Blade — Security style',
+    description: 'What kind of safety mindset should PRYMA favor?',
     questions: [
       {
         type: 'single',
         name: 'securityApproach',
-        prompt: 'Which approach should PRYMA prioritize?',
+        prompt: 'Which approach should PRYMA lean on most?',
         options: [
-          'Deterrence (make attacks expensive/punishable)',
-          'Survivability (assume attacks, bound damage)',
-          'Balanced / context-dependent'
+          'Deterrence — make attacks costly',
+          'Survivability — expect attacks and limit damage',
+          'Balanced — choose based on the situation'
         ]
       }
     ]
   },
+
   {
     id: 'card5',
-    title: 'The Mirror — Agents',
-    description: 'Which capabilities should autonomous agents have?',
+    title: 'The Mirror — What agents can do',
+    description: 'How much autonomy should software agents have?',
     questions: [
       {
         type: 'matrix',
         name: 'agentCapabilities',
-        prompt: 'Select how each agent capability should be treated.',
+        prompt: 'For each action, say how agents should be treated:',
         rows: [
-          'Hold assets',
-          'Vote in governance',
-          'Spawn other agents',
-          'Act without live human approval',
-          'Represent humans legally/economically'
+          'Hold and move assets',
+          'Vote in governance decisions',
+          'Create other agents',
+          'Act without a human approving live',
+          'Stand in for humans legally or financially'
         ],
         columns: ['Allowed', 'Restricted', 'Forbidden']
       }
     ]
   },
+
   {
     id: 'card6',
-    title: 'The Ledger — Governance Limits',
-    description: 'Which of the following should governance be allowed to change?',
+    title: 'The Ledger — What rules can change',
+    description: 'How flexible should PRYMA’s rules be?',
     questions: [
       {
         type: 'matrix',
         name: 'governanceLimits',
-        prompt: 'Mark how changeable each item should be.',
+        prompt: 'For each topic, how changeable should it be?',
         rows: [
           'Fees',
           'Validator rules',
-          'Proof requirements (human/agent/device)',
-          'Surveillance constraints',
+          'Proof requirements (human / agent / device)',
+          'Surveillance limits',
           'Emergency powers'
         ],
-        columns: ['Allowed', 'Supermajority Only', 'Never']
+        columns: ['Changeable', 'Supermajority only', 'Never change']
       }
     ]
   },
+
   {
     id: 'card7',
-    title: 'The Tower — Worst-Case Threat',
-    description: 'What is the most dangerous failure mode to design against?',
+    title: 'The Tower — Biggest threat',
+    description: 'What outcome should PRYMA defend against most?',
     questions: [
       {
         type: 'single',
         name: 'worstThreat',
-        prompt: 'Most dangerous failure mode?',
+        prompt: 'Which danger worries you the most?',
         options: [
           'Nation-state coercion',
-          'Hardware/OEM backdoors',
-          'Billionaire capture',
+          'Hardware or supply-chain backdoors',
+          'Billionaire or elite capture',
           'Silent mass surveillance',
-          'Benevolent centralization drift'
+          'Slow drift into benevolent centralization'
         ]
       }
     ]
   },
+
   {
     id: 'card8',
-    title: 'The Gate — Adoption Target',
-    description: 'Who should PRYMA be designed for first?',
+    title: 'The Gate — Who this is for first',
+    description: 'Who should PRYMA focus on helping before anyone else?',
     questions: [
       {
         type: 'single',
         name: 'adoptionTarget',
-        prompt: 'Who should PRYMA be designed for first?',
+        prompt: 'Who should PRYMA be built for first?',
         options: [
-          'Privacy maximalists',
+          'Privacy-focused users',
           'Developers',
-          'NGOs / journalists',
-          'Critical infrastructure / military',
-          'Everyday users'
+          'NGOs and journalists',
+          'Critical infrastructure / defense',
+          'Everyday people'
         ]
       }
     ]
   },
+
   {
     id: 'card9',
-    title: 'The Sun — Economics',
-    description: 'What role should profit play?',
+    title: 'The Sun — Money and incentives',
+    description: 'How should profit fit into PRYMA?',
     questions: [
       {
         type: 'single',
         name: 'profitRole',
-        prompt: 'What role should profit play?',
+        prompt: 'How important should profit be?',
         options: [
-          'Primary incentive',
-          'Secondary incentive',
-          'Shared commons',
-          'Capped by protocol rules'
+          'Main driver',
+          'Useful but secondary',
+          'Commons-first, profit optional',
+          'Allowed but capped by rules'
         ]
       },
       {
         type: 'single',
         name: 'wealthCap',
-        prompt: 'Should any class of actor be structurally prevented from extreme wealth accumulation?',
-        options: ['Yes', 'No', 'Unsure']
+        prompt: 'Should any type of participant be blocked from extreme wealth hoarding?',
+        options: ['Yes', 'No', 'Not sure']
       }
     ]
   },
+
   {
     id: 'card10',
-    title: 'The Star — Time Horizon',
-    description: 'How should PRYMA treat future uncertainty?',
+    title: 'The Star — Handling the future',
+    description: 'How should PRYMA deal with long-term uncertainty?',
     questions: [
       {
         type: 'single',
         name: 'timeHorizon',
-        prompt: 'How should PRYMA treat future uncertainty?',
+        prompt: 'How should PRYMA handle unknown future changes?',
         options: [
-          'Freeze core values now',
-          'Allow values to evolve via governance',
-          'Hybrid (constitutional core + adaptive layer)'
+          'Lock core values permanently',
+          'Let values evolve through governance',
+          'Mix — firm core, flexible outer layer'
         ]
       }
     ]
@@ -394,7 +406,7 @@ const encryptPayload = async (payload, passphrase) => {
   };
 };
 
-const powSearch = async (challenge, issuedAt, difficulty = '0000') => {
+const powSearch = async (challenge, issuedAt, difficulty = POW_DIFFICULTY) => {
   let nonce = 0;
   while (nonce < Number.MAX_SAFE_INTEGER) {
     const digest = await sha256(`${challenge}:${nonce}`);
@@ -404,6 +416,29 @@ const powSearch = async (challenge, issuedAt, difficulty = '0000') => {
     nonce++;
   }
   return null;
+};
+
+const loadStoredSubmissions = () => {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    console.warn('Could not read stored submissions', err);
+    return [];
+  }
+};
+
+const persistStoredSubmissions = (records) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(records, null, 2));
+};
+
+const dedupeSignature = async (payload) => {
+  const safeAnswers = payload.answers || {};
+  const sortedAnswers = JSON.stringify(safeAnswers, Object.keys(safeAnswers).sort());
+  const salt = payload.metadata?.clientSalt || clientSalt;
+  return sha256(`${sortedAnswers}:${salt}`);
 };
 
 const buildPayload = async () => {
@@ -441,25 +476,45 @@ const saveLocal = async () => {
   downloadBlob(JSON.stringify(bundle, null, 2), 'pryma-poll-local.json');
 };
 
+const storeSubmission = async (payload) => {
+  const duplicateHint = await dedupeSignature(payload);
+  const record = {
+    storedAt: new Date().toISOString(),
+    metadata: {
+      clientSalt: payload.metadata?.clientSalt || null,
+      pseudonymKey: payload.metadata?.pseudonymKey || null,
+      signedMessage: payload.metadata?.signedMessage || null,
+      powUsed: Boolean(payload.metadata?.pow),
+      encryption: payload.encryptedPayload ? { salt: payload.encryptedPayload.salt, iv: payload.encryptedPayload.iv } : null,
+      duplicateHint,
+      timingMs: payload.metadata?.timingMs || null,
+      entropy: payload.metadata?.entropy || null
+    },
+    answers: payload.encryptedPayload ? null : payload.answers,
+    encryptedPayload: payload.encryptedPayload || null
+  };
+
+  const existing = loadStoredSubmissions();
+  const already = existing.find((entry) => entry.metadata?.duplicateHint === duplicateHint);
+  if (already) {
+    return { duplicate: true };
+  }
+
+  persistStoredSubmissions([...existing, record]);
+  return { duplicate: false };
+};
+
 const submitForm = async (event) => {
   event.preventDefault();
-  statusEl.textContent = 'Submitting…';
+  statusEl.style.color = '';
+  statusEl.textContent = 'Saving locally…';
   try {
     const payload = await buildPayload();
-    const res = await fetch('/api/poll', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    if (!res.ok) {
-      const detail = await res.json().catch(() => ({}));
-      throw new Error(`Server rejected submission: ${detail.reason || res.status}`);
-    }
-    const response = await res.json();
-    statusEl.textContent = response.reason === 'duplicate-suspected'
-      ? 'We already have a similar response. Thanks for trying to avoid spam.'
-      : 'Submitted. Thank you for your input.';
-    if (localSignToggle.checked) {
+    const { duplicate } = await storeSubmission(payload);
+    statusEl.textContent = duplicate
+      ? 'We already have a similar response saved in this browser.'
+      : 'Saved locally. You can export or copy this data.';
+    if (!duplicate && localSignToggle.checked) {
       await saveLocal();
     }
   } catch (err) {
@@ -474,10 +529,10 @@ const updateEncryptionUI = () => {
 
 const requestPow = async () => {
   powStatus.textContent = 'Preparing…';
-  const challengeRes = await fetch('/api/pow-challenge');
-  const { challenge, issuedAt, difficulty } = await challengeRes.json();
+  const challenge = crypto.randomUUID().replace(/-/g, '');
+  const issuedAt = Date.now();
   powStatus.textContent = 'Computing proof… this may take a moment.';
-  powReceipt = await powSearch(challenge, issuedAt, difficulty);
+  powReceipt = await powSearch(challenge, issuedAt, POW_DIFFICULTY);
   if (powReceipt) {
     powStatus.textContent = `Proof ready (nonce ${powReceipt.nonce}, digest ${powReceipt.digest.slice(0, 10)}…)`;
   } else {

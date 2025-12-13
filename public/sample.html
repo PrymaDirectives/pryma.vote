@@ -19,11 +19,19 @@
     <div id="aggregates">Loading…</div>
   </section>
 
-  <p><a href="/">Back to poll</a></p>
+  <section class="panel">
+    <h2>Your saved submissions (this browser)</h2>
+    <p class="muted">The static site stores responses only in your browser. Export them from here anytime.</p>
+    <div id="local-submissions">Loading…</div>
+  </section>
+
+  <p><a href="./index.html">Back to poll</a></p>
 
   <script type="module">
+    const STORAGE_KEY = 'pryma.poll.responses';
     const sampleEl = document.getElementById('sample-json');
     const aggregatesEl = document.getElementById('aggregates');
+    const localEl = document.getElementById('local-submissions');
 
     const countFrequencies = (records, key) => {
       const map = new Map();
@@ -42,8 +50,28 @@
       return `<ul>${Array.from(map.entries()).map(([k, v]) => `<li><strong>${k}:</strong> ${v}</li>`).join('')}</ul>`;
     };
 
+    const renderLocalSubmissions = () => {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        localEl.innerHTML = '<p class="muted">No saved submissions yet.</p>';
+        return [];
+      }
+      try {
+        const records = JSON.parse(raw);
+        if (!Array.isArray(records) || !records.length) {
+          localEl.innerHTML = '<p class="muted">No saved submissions yet.</p>';
+          return [];
+        }
+        localEl.innerHTML = `<p><strong>${records.length}</strong> stored response(s). Export directly from your browser history.</p><pre>${JSON.stringify(records, null, 2)}</pre>`;
+        return records;
+      } catch (err) {
+        localEl.innerHTML = '<p class="muted">Unable to read local submissions.</p>';
+        return [];
+      }
+    };
+
     const loadSample = async () => {
-      const res = await fetch('/sample-responses.json');
+      const res = await fetch('sample-responses.json');
       const records = await res.json();
       sampleEl.textContent = JSON.stringify(records, null, 2);
 
@@ -55,6 +83,18 @@
         <h3>Worst-case threat</h3>
         ${renderMap(worst)}
       `;
+
+      const localRecords = renderLocalSubmissions();
+      if (localRecords.length) {
+        const localTrust = countFrequencies(localRecords, 'trustPrimitive');
+        const localThreat = countFrequencies(localRecords, 'worstThreat');
+        aggregatesEl.innerHTML += `
+          <h3>Your browser: trust primitive</h3>
+          ${renderMap(localTrust)}
+          <h3>Your browser: worst-case threat</h3>
+          ${renderMap(localThreat)}
+        `;
+      }
     };
 
     loadSample();

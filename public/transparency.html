@@ -12,12 +12,11 @@
   <section class="panel">
     <h2>Data flow</h2>
     <ul>
-      <li>No cookies or local storage writes beyond your explicit download.</li>
-      <li>Static assets only; no third-party embeds or analytics.</li>
-      <li>Rate-limiting uses an in-memory hash of your network address. It is never persisted to disk.</li>
-      <li>Optional proof-of-work lets you bypass soft rate limits without revealing identity.</li>
-      <li>Optional pseudonym key and signed message are stored separately from answers.</li>
-      <li>Optional client-side encryption stores only ciphertext + IV + salt; answers are unreadable server-side.</li>
+      <li>Pure static HTML/CSS/JS: no npm, no server code, no third-party embeds or analytics.</li>
+      <li>Your responses are stored locally in your browser under <code>localStorage</code>; you choose when to export them.</li>
+      <li>Optional proof-of-work still runs locally; the receipt is saved with your submission for transparency.</li>
+      <li>Optional pseudonym key and signed message are stored alongside metadata, not mixed with answers.</li>
+      <li>Optional client-side encryption stores ciphertext + IV + salt; answers remain unreadable without your passphrase.</li>
     </ul>
   </section>
 
@@ -45,12 +44,12 @@
     <ul>
       <li><strong>Linkability:</strong> No long-term identifiers; optional encryption prevents even server-side reading.</li>
       <li><strong>Coercion:</strong> No binding to accounts; responses can be made offline and uploaded via Tor or similar.</li>
-      <li><strong>Manipulation:</strong> Soft rate limit + optional PoW; dedupe hash reduces spam without identity.</li>
-      <li><strong>Transparency:</strong> <code>/api/transparency</code> endpoint lists collection policy.</li>
+      <li><strong>Manipulation:</strong> Optional PoW and dedupe hash help you police spam before exporting data.</li>
+      <li><strong>Transparency:</strong> The full collection policy is shown on this page and inside the static bundle.</li>
       <li><strong>Accessibility:</strong> All controls are keyboard-navigable; mobile-friendly layout.</li>
     </ul>
   </section>
 
-  <p><a href="/">Back to poll</a></p>
+  <p><a href="./index.html">Back to poll</a></p>
 </body>
 </html>
