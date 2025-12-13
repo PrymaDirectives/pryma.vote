@@ -15,12 +15,13 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
 }
 
 .container {
-  width: min(1100px, 92vw);
+  width: min(1100px, 94vw);
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .hero {
@@ -29,12 +30,12 @@ body {
   background: radial-gradient(circle at 20% 20%, rgba(122, 226, 201, 0.18), transparent 35%),
               radial-gradient(circle at 80% 0%, rgba(122, 226, 201, 0.12), transparent 35%),
               linear-gradient(120deg, #121521, #0e1017 70%);
-  padding: 3.25rem 1.25rem 3rem;
+  padding: 2rem 1rem;
   border-bottom: 1px solid var(--border);
 }
 
 .hero__inner {
-  width: min(1100px, 94vw);
+  width: min(1100px, 100%);
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
@@ -108,21 +109,26 @@ body {
   border: 1px solid var(--border);
   padding: 1rem;
   border-radius: 12px;
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
   color: var(--text);
+}
+
+.notice p {
+  margin: 0;
 }
 
 #cards {
   margin-top: 1.5rem;
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .card {
   background: var(--panel);
   border: 1px solid var(--border);
-  padding: 1rem;
+  padding: 1.25rem;
   border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .card header {
@@ -130,23 +136,26 @@ body {
   justify-content: space-between;
   align-items: baseline;
   gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .card h2 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  line-height: 1.3;
 }
 
 .card p {
-  margin: 0.35rem 0 0.5rem;
+  margin: 0 0 1rem;
   color: var(--muted);
+  line-height: 1.5;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  margin: 0.6rem 0;
+  gap: 0.5rem;
+  margin: 1rem 0;
 }
 
 .field input[type="text"],
@@ -167,17 +176,24 @@ body {
 .checkbox-group,
 .radio-group {
   display: grid;
-  gap: 0.35rem;
+  gap: 0.65rem;
 }
 
 .option {
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.65rem;
+  padding: 0.25rem 0;
 }
 
 .option input {
   margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.option label {
+  cursor: pointer;
+  line-height: 1.4;
 }
 
 .matrix {
@@ -195,18 +211,24 @@ body {
 }
 
 .panel {
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
   background: var(--panel);
   border: 1px solid var(--border);
-  padding: 1rem;
+  padding: 1.25rem;
   border-radius: 12px;
+}
+
+.panel h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.15rem;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 button {
@@ -237,11 +259,19 @@ button.ghost {
 }
 
 .transparency {
-  width: min(1100px, 92vw);
+  width: min(1100px, 94vw);
   margin: 2rem auto;
   padding: 1rem;
   border-top: 1px solid var(--border);
   color: var(--muted);
+}
+
+.transparency h2 {
+  margin-top: 0;
+}
+
+.transparency p {
+  margin: 0.5rem 0;
 }
 
 .dialog__header {
@@ -276,7 +306,7 @@ pre {
 
 @media (max-width: 1024px) {
   .hero {
-    padding: 2.75rem 1rem 2.5rem;
+    padding: 2rem 1rem;
   }
 
   .hero__inner {
@@ -301,8 +331,30 @@ pre {
 }
 
 @media (max-width: 720px) {
+  body {
+    padding-bottom: 1rem;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 0.75rem;
+  }
+
   .hero {
-    padding: 2.4rem 1rem 2.25rem;
+    padding: 1.5rem 0.75rem;
+  }
+
+  .hero__text h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero__text p {
+    font-size: 1rem;
+  }
+
+  .hero__pillars {
+    flex-direction: column;
+    width: 100%;
   }
 
   .hero__pillars span {
@@ -311,7 +363,95 @@ pre {
     justify-content: center;
   }
 
+  .hero__context {
+    padding: 0.875rem;
+  }
+
+  .notice {
+    padding: 0.875rem;
+    margin-top: 1rem;
+  }
+
+  #cards {
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+  }
+
+  .field {
+    margin: 0.75rem 0;
+  }
+
+  .field input[type="text"],
+  .field input[type="password"],
+  .field textarea,
+  .field select {
+    padding: 0.65rem;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .option {
+    gap: 0.5rem;
+  }
+
+  .panel {
+    padding: 1rem;
+    margin-top: 1.25rem;
+  }
+
   .actions {
     flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.875rem;
+  }
+
+  .matrix {
+    font-size: 0.875rem;
+  }
+
+  .matrix th,
+  .matrix td {
+    padding: 0.4rem;
+  }
+
+  dialog {
+    max-width: calc(100vw - 2rem);
+    margin: 1rem;
+  }
+
+  .transparency {
+    width: 100%;
+    padding: 1rem 0.75rem;
+    margin: 1.5rem auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__text h1 {
+    font-size: 1.5rem;
+  }
+
+  .card h2 {
+    font-size: 1rem;
+  }
+
+  .field label,
+  .field span {
+    font-size: 0.95rem;
+  }
+
+  .field small {
+    font-size: 0.85rem;
   }
 }
