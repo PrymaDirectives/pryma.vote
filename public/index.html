@@ -8,37 +8,39 @@
 </head>
 <body>
   <header class="hero">
-    <div class="hero__text">
-      <p class="eyebrow">PRYMA Constitutional Input</p>
-      <h1>Tarot Cards of Tech</h1>
-      <p>Share your judgment on how PRYMA should handle trust, power, privacy, and governance. No login, no tracking, anonymous by default.</p>
-      <div class="hero__pillars">
-        <span>📵 No cookies</span>
-        <span>🙈 Anonymous-first</span>
-        <span>🛡️ Minimal metadata</span>
-        <span>🧾 Transparent storage</span>
+    <div class="hero__inner">
+      <div class="hero__text">
+        <p class="eyebrow">PRYMA Constitutional Input</p>
+        <h1>Tarot Cards of Tech</h1>
+        <p>Share your judgment on how PRYMA should handle trust, power, privacy, and governance. No login, no tracking, anonymous by default.</p>
+        <div class="hero__pillars">
+          <span>📵 No cookies</span>
+          <span>🙈 Anonymous-first</span>
+          <span>🛡️ Minimal metadata</span>
+          <span>🧾 Transparent storage</span>
+        </div>
       </div>
+      <aside class="hero__context">
+        <details open>
+          <summary>What we collect</summary>
+          <ul>
+            <li>Your answers + optional free text</li>
+            <li>Optional pseudonym key or signed message</li>
+            <li>Optional proof-of-work receipt</li>
+            <li>Local-only storage in your browser until you export</li>
+          </ul>
+        </details>
+        <details>
+          <summary>What we avoid</summary>
+          <ul>
+            <li>No login, cookies, or trackers</li>
+            <li>No long-term IP storage</li>
+            <li>No fingerprinting</li>
+            <li>No third-party scripts</li>
+          </ul>
+        </details>
+      </aside>
     </div>
-    <aside class="hero__context">
-      <details open>
-        <summary>What we collect</summary>
-        <ul>
-          <li>Your answers + optional free text</li>
-          <li>Optional pseudonym key or signed message</li>
-          <li>Optional proof-of-work receipt</li>
-          <li>Ephemeral rate-limit hash (memory only)</li>
-        </ul>
-      </details>
-      <details>
-        <summary>What we avoid</summary>
-        <ul>
-          <li>No login, cookies, or trackers</li>
-          <li>No long-term IP storage</li>
-          <li>No fingerprinting</li>
-          <li>No third-party scripts</li>
-        </ul>
-      </details>
-    </aside>
   </header>
 
   <main class="container">
@@ -64,7 +66,7 @@
 
         <div class="field">
           <label for="pow-toggle" class="inline">
-            <input type="checkbox" id="pow-toggle"> Add light proof-of-work to bypass soft rate limits
+            <input type="checkbox" id="pow-toggle"> Add light proof-of-work to your saved response
           </label>
           <button type="button" id="generate-pow" class="ghost">Generate proof (optional)</button>
           <small id="pow-status">No proof generated.</small>
@@ -97,8 +99,8 @@
 
   <section class="transparency">
     <h2>Transparency</h2>
-    <p><a href="/transparency.html">Read the full transparency + threat model notes</a>.</p>
-    <p><a href="/sample.html">View a sample dataset and aggregates</a>.</p>
+    <p><a href="./transparency.html">Read the full transparency + threat model notes</a>.</p>
+    <p><a href="./sample.html">View a sample dataset and aggregates</a>.</p>
   </section>
 
   <dialog id="preview-dialog">
