@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sample Responses</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="container">
+  <h1>Sample dataset</h1>
+  <p>These are fabricated responses used to test storage and aggregation without revealing any live data.</p>
+  <section class="panel">
+    <h2>Preview</h2>
+    <pre id="sample-json">Loading…</pre>
+  </section>
+
+  <section class="panel">
+    <h2>Aggregate counts</h2>
+    <div id="aggregates">Loading…</div>
+  </section>
+
+  <p><a href="/">Back to poll</a></p>
+
+  <script type="module">
+    const sampleEl = document.getElementById('sample-json');
+    const aggregatesEl = document.getElementById('aggregates');
+
+    const countFrequencies = (records, key) => {
+      const map = new Map();
+      records.forEach((rec) => {
+        const value = rec.answers?.[key];
+        if (Array.isArray(value)) {
+          value.forEach((v) => map.set(v, (map.get(v) || 0) + 1));
+        } else if (typeof value === 'string') {
+          map.set(value, (map.get(value) || 0) + 1);
+        }
+      });
+      return map;
+    };
+
+    const renderMap = (map) => {
+      return `<ul>${Array.from(map.entries()).map(([k, v]) => `<li><strong>${k}:</strong> ${v}</li>`).join('')}</ul>`;
+    };
+
+    const loadSample = async () => {
+      const res = await fetch('/sample-responses.json');
+      const records = await res.json();
+      sampleEl.textContent = JSON.stringify(records, null, 2);
+
+      const trust = countFrequencies(records, 'trustPrimitive');
+      const worst = countFrequencies(records, 'worstThreat');
+      aggregatesEl.innerHTML = `
+        <h3>Trust primitive</h3>
+        ${renderMap(trust)}
+        <h3>Worst-case threat</h3>
+        ${renderMap(worst)}
+      `;
+    };
+
+    loadSample();
+  </script>
+</body>
+</html>
