@@ -26,7 +26,7 @@
           <li>Your answers + optional free text</li>
           <li>Optional pseudonym key or signed message</li>
           <li>Optional proof-of-work receipt</li>
-          <li>Ephemeral rate-limit hash (memory only)</li>
+          <li>Local-only storage in your browser until you export</li>
         </ul>
       </details>
       <details>
@@ -64,7 +64,7 @@
 
         <div class="field">
           <label for="pow-toggle" class="inline">
-            <input type="checkbox" id="pow-toggle"> Add light proof-of-work to bypass soft rate limits
+            <input type="checkbox" id="pow-toggle"> Add light proof-of-work to your saved response
           </label>
           <button type="button" id="generate-pow" class="ghost">Generate proof (optional)</button>
           <small id="pow-status">No proof generated.</small>
@@ -97,8 +97,8 @@
 
   <section class="transparency">
     <h2>Transparency</h2>
-    <p><a href="/transparency.html">Read the full transparency + threat model notes</a>.</p>
-    <p><a href="/sample.html">View a sample dataset and aggregates</a>.</p>
+    <p><a href="./transparency.html">Read the full transparency + threat model notes</a>.</p>
+    <p><a href="./sample.html">View a sample dataset and aggregates</a>.</p>
   </section>
 
   <dialog id="preview-dialog">

@@ -7,37 +7,32 @@ A privacy-first, anonymous polling form that gathers foundational input for PRYM
 - **Privacy defaults**: no trackers, no persistent IP storage, minimal metadata.
 - **Integrity options**: pseudonymous keys, optional signed message, optional proof-of-work, duplicate heuristics without identity.
 - **Client-side controls**: preview, local-only save, optional local encryption before submission.
-- **Transparency**: `/api/transparency` endpoint, dedicated transparency page, sample dataset.
+- **Transparency**: Dedicated transparency page and sample dataset, no hidden network calls.
 
 ## Running locally
+No npm installs are needed. Open `public/index.html` directly in your browser or serve the folder with any static file server:
 ```bash
-npm install
-npm run dev
+cd public
+python -m http.server 3000
 ```
-The server starts on `http://localhost:3000` and serves the static poll and JSON API.
+Then visit `http://localhost:3000`.
 
 ## Deployment notes
-- Uses only Express and static assets; deploy on any Node 18+ environment.
-- Store `data/responses.json` outside of public web roots. The file is ignored by git and auto-created on first submission.
-- Behind a reverse proxy, preserve `X-Forwarded-For` if you want rate-limiting to respect the original client address.
-- No database is required. For serverless, swap the flat-file writes in `server.js` with your provider’s KV/blob store.
+- Pure static HTML/CSS/JS—drop the `public/` folder onto any static host (GitHub Pages, S3, Netlify, etc.).
+- Responses are saved only in each visitor’s browser via `localStorage`; exporting is explicit and client-controlled.
+- Optional proof-of-work, client-side encryption, and local signing still work entirely in-browser.
 
 ## Data handling
-- Answers and optional metadata are stored in `data/responses.json` as structured JSON with metadata separated from answers.
-- Optional client-side encryption stores ciphertext only; automated aggregates skip unreadable entries.
-- Soft rate-limit uses in-memory hashed IPs with a rolling window; nothing persisted.
+- Answers and optional metadata are stored locally in `localStorage` as structured JSON with metadata separated from answers.
+- Optional client-side encryption stores ciphertext only; unreadable without the passphrase you keep.
+- Soft rate-limiting is removed in static mode; you can still attach a proof-of-work receipt for transparency.
 
 ## Aggregation
-Run the lightweight aggregator to summarize stored responses:
-```bash
-npm run aggregate
-```
-The script reads `data/responses.json` (auto-creates if missing) and prints simple counts for key questions.
+Use the sample dataset page (`/sample.html`) to view fabricated responses and see counts. Locally saved submissions are also displayed there for quick inspection and export.
 
 ## Files of interest
 - `public/index.html` – poll UI
 - `public/app.js` – logic, optional PoW/encryption/local save
-- `server.js` – API endpoint, rate-limit, dedupe and storage
 - `docs/THREAT_MODEL.md` – privacy and threat analysis
 - `data/sample-responses.json` – fake responses for testing and demos
 
