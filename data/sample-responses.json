@@ -1,0 +1,82 @@
+[
+  {
+    "storedAt": "2024-12-01T00:00:00.000Z",
+    "metadata": {
+      "clientSalt": "alpha",
+      "pseudonymKey": "ssh-ed25519 AAA-test",
+      "signedMessage": "signed-intent-1",
+      "powUsed": true,
+      "encryption": null,
+      "duplicateHint": "hash-a",
+      "timingMs": 45210,
+      "entropy": "1-2-3-4"
+    },
+    "answers": {
+      "trustPrimitive": "A constitutional rule",
+      "rootRationale": "Rules out personality cults.",
+      "powerForbidden": ["Governance", "Economic control"],
+      "powerNeverCapturable": "Governance",
+      "acceptableLeakage": ["Traffic volume", "Public actions (votes, proposals)"],
+      "securityApproach": "Survivability (assume attacks, bound damage)",
+      "agentCapabilities": {
+        "Hold assets": "Restricted",
+        "Vote in governance": "Restricted",
+        "Spawn other agents": "Forbidden",
+        "Act without live human approval": "Forbidden",
+        "Represent humans legally/economically": "Allowed"
+      },
+      "governanceLimits": {
+        "Fees": "Allowed",
+        "Validator rules": "Supermajority Only",
+        "Proof requirements (human/agent/device)": "Supermajority Only",
+        "Surveillance constraints": "Never",
+        "Emergency powers": "Never"
+      },
+      "worstThreat": "Benevolent centralization drift",
+      "adoptionTarget": "Everyday users",
+      "profitRole": "Shared commons",
+      "wealthCap": "Yes",
+      "timeHorizon": "Hybrid (constitutional core + adaptive layer)"
+    }
+  },
+  {
+    "storedAt": "2024-12-02T00:00:00.000Z",
+    "metadata": {
+      "clientSalt": "beta",
+      "pseudonymKey": null,
+      "signedMessage": null,
+      "powUsed": false,
+      "encryption": null,
+      "duplicateHint": "hash-b",
+      "timingMs": 29110,
+      "entropy": "5-6-7-8"
+    },
+    "answers": {
+      "trustPrimitive": "A cryptographic capability",
+      "rootRationale": null,
+      "powerForbidden": ["Routing / networking", "Data visibility"],
+      "powerNeverCapturable": "Data visibility",
+      "acceptableLeakage": ["Timing metadata"],
+      "securityApproach": "Balanced / context-dependent",
+      "agentCapabilities": {
+        "Hold assets": "Allowed",
+        "Vote in governance": "Restricted",
+        "Spawn other agents": "Restricted",
+        "Act without live human approval": "Restricted",
+        "Represent humans legally/economically": "Restricted"
+      },
+      "governanceLimits": {
+        "Fees": "Allowed",
+        "Validator rules": "Allowed",
+        "Proof requirements (human/agent/device)": "Supermajority Only",
+        "Surveillance constraints": "Never",
+        "Emergency powers": "Supermajority Only"
+      },
+      "worstThreat": "Silent mass surveillance",
+      "adoptionTarget": "NGOs / journalists",
+      "profitRole": "Secondary incentive",
+      "wealthCap": "Unsure",
+      "timeHorizon": "Allow values to evolve via governance"
+    }
+  }
+]

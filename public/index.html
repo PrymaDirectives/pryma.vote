@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PRYMA | Constitutional Poll</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__text">
+      <p class="eyebrow">PRYMA Constitutional Input</p>
+      <h1>Tarot Cards of Tech</h1>
+      <p>Share your judgment on how PRYMA should handle trust, power, privacy, and governance. No login, no tracking, anonymous by default.</p>
+      <div class="hero__pillars">
+        <span>📵 No cookies</span>
+        <span>🙈 Anonymous-first</span>
+        <span>🛡️ Minimal metadata</span>
+        <span>🧾 Transparent storage</span>
+      </div>
+    </div>
+    <aside class="hero__context">
+      <details open>
+        <summary>What we collect</summary>
+        <ul>
+          <li>Your answers + optional free text</li>
+          <li>Optional pseudonym key or signed message</li>
+          <li>Optional proof-of-work receipt</li>
+          <li>Ephemeral rate-limit hash (memory only)</li>
+        </ul>
+      </details>
+      <details>
+        <summary>What we avoid</summary>
+        <ul>
+          <li>No login, cookies, or trackers</li>
+          <li>No long-term IP storage</li>
+          <li>No fingerprinting</li>
+          <li>No third-party scripts</li>
+        </ul>
+      </details>
+    </aside>
+  </header>
+
+  <main class="container">
+    <section class="notice">
+      <p><strong>How to contribute:</strong> pick answers, add context if you want, and optionally sign locally or attach a pseudonymous key. You can preview or save locally before you submit.</p>
+    </section>
+
+    <form id="poll-form">
+      <div id="cards"></div>
+
+      <section class="panel">
+        <h2>Optional integrity signals</h2>
+        <label class="field">
+          <span>Pseudonymous key (optional)</span>
+          <input type="text" name="pseudonymKey" placeholder="e.g., ssh-ed25519 AAAA..." autocomplete="off">
+          <small>Stored separately from answers; shared only in aggregated form.</small>
+        </label>
+
+        <label class="field">
+          <span>Signed message or intent (optional)</span>
+          <textarea name="signedMessage" rows="3" placeholder="Paste a signed message or intent string"></textarea>
+        </label>
+
+        <div class="field">
+          <label for="pow-toggle" class="inline">
+            <input type="checkbox" id="pow-toggle"> Add light proof-of-work to bypass soft rate limits
+          </label>
+          <button type="button" id="generate-pow" class="ghost">Generate proof (optional)</button>
+          <small id="pow-status">No proof generated.</small>
+        </div>
+
+        <div class="field">
+          <label for="encrypt-toggle" class="inline">
+            <input type="checkbox" id="encrypt-toggle"> Encrypt answers locally before sending
+          </label>
+          <input type="password" id="encryption-passphrase" placeholder="Passphrase" disabled>
+          <small>We never see the key. Encrypted submissions are stored as ciphertext; they are excluded from automated aggregates.</small>
+        </div>
+
+        <div class="field">
+          <label class="inline">
+            <input type="checkbox" id="local-sign-toggle"> Save a local-only signature (never uploaded)
+          </label>
+          <small>We’ll create a signed JSON blob for you to keep; it never leaves your device.</small>
+        </div>
+      </section>
+
+      <section class="actions">
+        <button type="button" id="preview-btn">Preview</button>
+        <button type="button" id="save-local-btn" class="ghost">Save locally</button>
+        <button type="submit" class="primary">Submit anonymously</button>
+      </section>
+      <p class="status" id="status"></p>
+    </form>
+  </main>
+
+  <section class="transparency">
+    <h2>Transparency</h2>
+    <p><a href="/transparency.html">Read the full transparency + threat model notes</a>.</p>
+    <p><a href="/sample.html">View a sample dataset and aggregates</a>.</p>
+  </section>
+
+  <dialog id="preview-dialog">
+    <div class="dialog__header">
+      <h3>Preview your answers</h3>
+      <button type="button" id="close-preview">Close</button>
+    </div>
+    <pre id="preview-content"></pre>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
