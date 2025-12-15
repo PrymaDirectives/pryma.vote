@@ -14,13 +14,13 @@ const POW_DIFFICULTY = '0000';
 const cards = [
   {
     id: 'card1',
-    title: 'The Root — Where trust begins',
-    description: 'What should PRYMA trust first, before anything else?',
+    title: 'Trust: Where does it start?',
+    description: 'Every system has to decide what it trusts first.',
     questions: [
       {
         type: 'single',
         name: 'trustPrimitive',
-        prompt: 'What should PRYMA treat as its starting point for trust?',
+        prompt: 'What should PRYMA trust as its starting point?\nExample: should it trust a real person, a device, or a secret code first?',
         options: [
           'A real human',
           'A secret key or cryptographic proof',
@@ -33,21 +33,21 @@ const cards = [
       {
         type: 'text',
         name: 'rootRationale',
-        prompt: 'Why did you pick that?',
-        placeholder: 'Optional context'
+        prompt: 'Why did you pick that? (optional)',
+        placeholder: 'Example: “People can be held responsible” or “Keys are harder to fake.”'
       }
     ]
   },
 
   {
     id: 'card2',
-    title: 'The Flame — Stopping power from piling up',
-    description: 'Where should PRYMA strictly prevent power from concentrating?',
+    title: 'Power: What must never be taken over?',
+    description: 'In some systems, power slowly ends up in the hands of a few people. Where should that never happen?',
     questions: [
       {
         type: 'multi',
         name: 'powerForbidden',
-        prompt: 'Select all areas where no one should be able to hoard power:',
+        prompt: 'Select all areas where no one should be able to take over control.\nExample: no single group should become the permanent boss.',
         options: [
           'Governance',
           'Validation',
@@ -60,7 +60,7 @@ const cards = [
       {
         type: 'single',
         name: 'powerNeverCapturable',
-        prompt: 'If only one area could never be captured, which would it be?',
+        prompt: 'If you could protect only ONE area from takeover, which would it be?',
         options: [
           'Governance',
           'Validation',
@@ -75,13 +75,13 @@ const cards = [
 
   {
     id: 'card3',
-    title: 'The Veil — Privacy basics',
-    description: 'What information could leak while PRYMA still succeeds?',
+    title: 'Privacy: What information is okay to leak?',
+    description: 'No system is perfect. This asks what info could leak while the system still feels okay to use.',
     questions: [
       {
         type: 'multi',
         name: 'acceptableLeakage',
-        prompt: 'Which kinds of information would be acceptable to leak?',
+        prompt: 'Which information, if any, would be acceptable to leak?\nExample: someone knows you sent a message, but not what it said.',
         options: [
           'Traffic volume',
           'Timing metadata',
@@ -95,17 +95,17 @@ const cards = [
 
   {
     id: 'card4',
-    title: 'The Blade — Security style',
-    description: 'What kind of safety mindset should PRYMA favor?',
+    title: 'Security: How should safety work?',
+    description: 'Different systems stay safe in different ways.',
     questions: [
       {
         type: 'single',
         name: 'securityApproach',
-        prompt: 'Which approach should PRYMA lean on most?',
+        prompt: 'Which safety approach should PRYMA use most?',
         options: [
-          'Deterrence — make attacks costly',
-          'Survivability — expect attacks and limit damage',
-          'Balanced — choose based on the situation'
+          'Make attacks costly (example: puzzles or limits that slow attackers down)',
+          'Expect attacks and limit damage (example: assume something breaks and contain it)',
+          'Use both depending on the situation'
         ]
       }
     ]
@@ -113,61 +113,61 @@ const cards = [
 
   {
     id: 'card5',
-    title: 'The Mirror — What agents can do',
-    description: 'How much autonomy should software agents have?',
+    title: 'Software agents: What should they be allowed to do?',
+    description: 'Software agents are programs that can act for people. This asks how much freedom they should have.',
     questions: [
       {
         type: 'matrix',
         name: 'agentCapabilities',
-        prompt: 'For each action, say how agents should be treated:',
+        prompt: 'For each action, choose what agents should be allowed to do.\nExample: can a bot spend money or vote for you?',
         rows: [
-          'Hold and move assets',
-          'Vote in governance decisions',
-          'Create other agents',
-          'Act without a human approving live',
-          'Stand in for humans legally or financially'
+          'Hold and move assets (spend money / move tokens)',
+          'Vote on rule changes (vote like a person)',
+          'Create other agents (bots making bots)',
+          'Act without a human watching (do things while you’re offline)',
+          'Act legally or financially for a human (sign contracts, take loans)'
         ],
-        columns: ['Allowed', 'Restricted', 'Forbidden']
+        columns: ['Allowed', 'Allowed with rules', 'Not allowed']
       }
     ]
   },
 
   {
     id: 'card6',
-    title: 'The Ledger — What rules can change',
-    description: 'How flexible should PRYMA’s rules be?',
+    title: 'Rules: What should be changeable?',
+    description: 'Some rules should be flexible. Others should be very hard or impossible to change.',
     questions: [
       {
         type: 'matrix',
         name: 'governanceLimits',
-        prompt: 'For each topic, how changeable should it be?',
+        prompt: 'How changeable should these rules be?\nExample: like school rules—some can change, but others shouldn’t.',
         rows: [
-          'Fees',
-          'Validator rules',
-          'Proof requirements (human / agent / device)',
-          'Surveillance limits',
-          'Emergency powers'
+          'Fees (cost to use the system)',
+          'Validator rules (how referees are chosen)',
+          'Proof requirements (how you prove you’re real)',
+          'Surveillance limits (rules about tracking or spying)',
+          'Emergency powers (what happens during attacks)'
         ],
-        columns: ['Changeable', 'Supermajority only', 'Never change']
+        columns: ['Easy to change', 'Hard to change (needs broad agreement)', 'Should never change']
       }
     ]
   },
 
   {
     id: 'card7',
-    title: 'The Tower — Biggest threat',
-    description: 'What outcome should PRYMA defend against most?',
+    title: 'Risks: What worries you most?',
+    description: 'No system fails in just one way. This asks which risk matters most to you.',
     questions: [
       {
         type: 'single',
         name: 'worstThreat',
-        prompt: 'Which danger worries you the most?',
+        prompt: 'Which outcome worries you the most?',
         options: [
-          'Nation-state coercion',
-          'Hardware or supply-chain backdoors',
-          'Billionaire or elite capture',
-          'Silent mass surveillance',
-          'Slow drift into benevolent centralization'
+          'Government pressure or control (a government forces people to comply)',
+          'Hidden hardware backdoors (hardware secretly hacked at the factory)',
+          'Takeover by the very rich or powerful (elite capture)',
+          'Quiet mass surveillance (everyone gets tracked quietly)',
+          'Slow drift into centralization (slowly becomes one company’s system)'
         ]
       }
     ]
@@ -175,18 +175,18 @@ const cards = [
 
   {
     id: 'card8',
-    title: 'The Gate — Who this is for first',
-    description: 'Who should PRYMA focus on helping before anyone else?',
+    title: 'People: Who should this help first?',
+    description: 'Different groups have different needs. This asks who PRYMA should prioritize.',
     questions: [
       {
         type: 'single',
         name: 'adoptionTarget',
         prompt: 'Who should PRYMA be built for first?',
         options: [
-          'Privacy-focused users',
-          'Developers',
-          'NGOs and journalists',
-          'Critical infrastructure / defense',
+          'People who strongly care about privacy',
+          'Developers building applications',
+          'NGOs and journalists protecting sources',
+          'Critical infrastructure (hospitals, utilities, defense)',
           'Everyday people'
         ]
       }
@@ -195,13 +195,13 @@ const cards = [
 
   {
     id: 'card9',
-    title: 'The Sun — Money and incentives',
-    description: 'How should profit fit into PRYMA?',
+    title: 'Money: How should profit work?',
+    description: 'Money affects incentives and power.',
     questions: [
       {
         type: 'single',
         name: 'profitRole',
-        prompt: 'How important should profit be?',
+        prompt: 'How important should making profit be?\nExample: company-first vs public-good-first.',
         options: [
           'Main driver',
           'Useful but secondary',
@@ -212,7 +212,7 @@ const cards = [
       {
         type: 'single',
         name: 'wealthCap',
-        prompt: 'Should any type of participant be blocked from extreme wealth hoarding?',
+        prompt: 'Should the system stop anyone from hoarding extreme wealth or power?\nExample: no one can own almost everything.',
         options: ['Yes', 'No', 'Not sure']
       }
     ]
@@ -220,8 +220,8 @@ const cards = [
 
   {
     id: 'card10',
-    title: 'The Star — Handling the future',
-    description: 'How should PRYMA deal with long-term uncertainty?',
+    title: 'Future: How should change be handled?',
+    description: 'The future is unpredictable.',
     questions: [
       {
         type: 'single',
@@ -264,7 +264,7 @@ const renderCards = () => {
     section.innerHTML = `
       <header>
         <div>
-          <p class="eyebrow">Card ${index + 1}</p>
+          <p class="eyebrow">Question ${index + 1}</p>
           <h2>${card.title}</h2>
         </div>
         <span class="muted">${card.description}</span>
@@ -274,7 +274,19 @@ const renderCards = () => {
     card.questions.forEach((question) => {
       const field = document.createElement('div');
       field.className = 'field';
-      field.innerHTML = `<label><strong>${question.prompt}</strong></label>`;
+      const label = document.createElement('label');
+      const [promptText, helperText] = question.prompt.split('\nExample:');
+      const strong = document.createElement('strong');
+      strong.textContent = promptText;
+      label.appendChild(strong);
+      if (helperText !== undefined) {
+        const helper = document.createElement('small');
+        helper.className = 'helper';
+        helper.textContent = `Example:${helperText}`.trim();
+        label.appendChild(document.createElement('br'));
+        label.appendChild(helper);
+      }
+      field.appendChild(label);
 
       if (question.type === 'single') {
         const group = document.createElement('div');
