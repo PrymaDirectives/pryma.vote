@@ -14,7 +14,8 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.7;
   padding-bottom: 2rem;
 }
 
@@ -154,8 +155,12 @@ body {
 .field {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin: 1rem 0;
+  gap: 0.65rem;
+  margin: 1.25rem 0;
+}
+
+.field strong {
+  font-size: 1.05rem;
 }
 
 .field input[type="text"],
@@ -173,6 +178,13 @@ body {
   color: var(--muted);
 }
 
+.helper {
+  color: var(--muted);
+  font-size: 0.95rem;
+  display: inline-block;
+  margin-top: 0.25rem;
+}
+
 .checkbox-group,
 .radio-group {
   display: grid;
@@ -182,8 +194,8 @@ body {
 .option {
   display: flex;
   align-items: flex-start;
-  gap: 0.65rem;
-  padding: 0.25rem 0;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
 }
 
 .option input {

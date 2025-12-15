@@ -10,14 +10,14 @@
   <header class="hero">
     <div class="hero__inner">
       <div class="hero__text">
-        <p class="eyebrow">PRYMA Constitutional Input</p>
-        <h1>Tarot Cards of Tech</h1>
-        <p>Share your judgment on how PRYMA should handle trust, power, privacy, and governance. No login, no tracking, anonymous by default.</p>
+        <p class="eyebrow">PRYMA Survey</p>
+        <h1>Help Choose the Rules for PRYMA</h1>
+        <p>You’re helping decide how a new technology system should work. There are no right or wrong answers. Examples are included to make questions clearer.</p>
         <div class="hero__pillars">
           <span>📵 No cookies</span>
           <span>🙈 Anonymous-first</span>
-          <span>🛡️ Minimal metadata</span>
-          <span>🧾 Transparent storage</span>
+          <span>🛡️ Minimal data</span>
+          <span>💾 Saved locally</span>
         </div>
       </div>
       <aside class="hero__context">
@@ -26,8 +26,8 @@
           <ul>
             <li>Your answers + optional free text</li>
             <li>Optional pseudonym key or signed message</li>
-            <li>Optional proof-of-work receipt</li>
-            <li>Local-only storage in your browser until you export</li>
+            <li>Optional anti-spam proof</li>
+            <li>Saved in your browser unless you download/export</li>
           </ul>
         </details>
         <details>
@@ -52,7 +52,7 @@
       <div id="cards"></div>
 
       <section class="panel">
-        <h2>Optional integrity signals</h2>
+        <h2>Optional: add trust signals (still anonymous)</h2>
         <label class="field">
           <span>Pseudonymous key (optional)</span>
           <input type="text" name="pseudonymKey" placeholder="e.g., ssh-ed25519 AAAA..." autocomplete="off">
@@ -66,7 +66,7 @@
 
         <div class="field">
           <label for="pow-toggle" class="inline">
-            <input type="checkbox" id="pow-toggle"> Add light proof-of-work to your saved response
+            <input type="checkbox" id="pow-toggle"> Anti-spam puzzle (optional)
           </label>
           <button type="button" id="generate-pow" class="ghost">Generate proof (optional)</button>
           <small id="pow-status">No proof generated.</small>
@@ -74,10 +74,10 @@
 
         <div class="field">
           <label for="encrypt-toggle" class="inline">
-            <input type="checkbox" id="encrypt-toggle"> Encrypt answers locally before sending
+            <input type="checkbox" id="encrypt-toggle"> Lock your answers with a password (optional)
           </label>
           <input type="password" id="encryption-passphrase" placeholder="Passphrase" disabled>
-          <small>We never see the key. Encrypted submissions are stored as ciphertext; they are excluded from automated aggregates.</small>
+          <small>We never see the key. Encrypted submissions are stored as ciphertext; they are excluded from automated aggregates. Locked answers won’t be counted automatically.</small>
         </div>
 
         <div class="field">
